@@ -1,0 +1,5 @@
+=== step_02  2026-10-19T22:47:22 ===
+T_meas=300.0 s: SF fissions=2555240, (a,n)=2752351, source neutrons=8249722, pulses=6846601
+S_emp = 22822.00 cps, S_theo = F eps M nu_s1 (1+a) = 22854.03 cps, rel diff = -0.1401%
+Rossi-alpha (first 60 s): tau = 52.03 +- 0.31 us (step01 tau = 52.69 us), baseline B = 5.2064e+08, S^2 = 5.1966e+08 (rel +0.1890%)
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/02_list_mode_pulses.npz

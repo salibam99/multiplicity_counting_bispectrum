@@ -1,0 +1,5 @@
+=== step_02_smoke  2026-10-19T22:47:17 ===
+T_meas=30.0 s: SF fissions=255871, (a,n)=275697, source neutrons=825802, pulses=686682
+S_emp = 22889.40 cps, S_theo = F eps M nu_s1 (1+a) = 22854.03 cps, rel diff = +0.1548%
+Rossi-alpha (first 30 s): tau = 50.83 +- 0.37 us (step01 tau = 52.69 us), baseline B = 5.2569e+08, S^2 = 5.2392e+08 (rel +0.3380%)
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/02_smoke_pulses.npz

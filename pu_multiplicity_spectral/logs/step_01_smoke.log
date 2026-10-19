@@ -1,0 +1,11 @@
+=== step_01_smoke  2026-10-19T22:46:02 ===
+--- run_openmc_transport: n_hist=10000, tag=step01_smoke ---
+N_hist = 10000,  He3 captures = 8276,  detections/source = 0.8276
+dropped 11 delayed-neutron captures (t > 10 ms), 0.1327% of all
+sphere crossings out=13323 in=464  M_MC = 1.2859
+epsilon = 0.6436;  per bank = [0.2141 0.2149 0.2146]  (rel. dev from eps/3: [-0.0021  0.0016  0.0005])
+die-away tau = 50.86 +- 0.83 us  (R^2 = 0.99026)
+captures/history: mean 0.8276, var 0.6179, <n(n-1)>/2 = 0.2376
+P=0.0 us G=64 us: empirical f_d=0.6993 f_t=0.4915 | exponential f_d=0.7159 f_t=0.5125
+P=3.0 us G=64 us: empirical f_d=0.6592 f_t=0.4366 | exponential f_d=0.6749 f_t=0.4555
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/01_smoke_event_library.npz

@@ -1,0 +1,24 @@
+=== step_03  2026-10-19T22:48:51 ===
+pulses=6846601, T=300.0 s, G=64.0 us, L=2000.0 us, 8 bg gates
+eps=0.64262, M_MC=1.29206, tau=52.69 us
+nu nominal: {'s1': 2.153, 's2': 3.808, 's3': 5.274, 'i1': 3.163, 'i2': 8.24, 'i3': 17.321}
+nu effective (OpenMC implicit fission, calibrated from library): i2=4.8525 i3=0.2224
+
+-- P = 0.0 us --
+triggers=6846544  f1=1.98961 b1=1.46049 f2=2.58979 b2=1.53100  cross b1(f1-b1)=0.77277
+S=22822.00±12.35  D=12075.50±25.64  T=6527.36±35.53 cps
+f_d=0.6962 f_t=0.4882 (exp: 0.7032, 0.4945)  D_inf=17345.19  T_inf=13371.15
+  inversion [effective nu    ]: M=1.2796 alpha=0.4483 m_eff=18.798 g  m_Pu=313.29 g (+4.43%)
+  inversion [nominal nu      ]: M=1.1392 alpha=0.1440 m_eff=26.730 g  m_Pu=445.51 g (+48.50%)
+  inversion [eff nu, exp gate]: M=1.2791 alpha=0.4683 m_eff=18.549 g  m_Pu=309.15 g (+3.05%)
+  stat errors (eff nu): {'M': 0.0016890670750220912, 'alpha': 0.006998432553097883, 'm_eff': 0.11604584060817597, 'm_pu': 1.9340973434695985}
+
+-- P = 3.0 us --
+triggers=6846544  f1=1.95941 b1=1.46049 f2=2.51495 b2=1.53100  cross b1(f1-b1)=0.72866
+S=22822.00±12.35  D=11386.28±26.39  T=5825.94±34.03 cps
+f_d=0.6566 f_t=0.4341 (exp: 0.6643, 0.4412)  D_inf=17340.88  T_inf=13420.53
+  inversion [effective nu    ]: M=1.2812 alpha=0.4559 m_eff=18.676 g  m_Pu=311.26 g (+3.75%)
+  inversion [nominal nu      ]: M=1.1400 alpha=0.1477 m_eff=26.626 g  m_Pu=443.77 g (+47.92%)
+  inversion [eff nu, exp gate]: M=1.2801 alpha=0.4766 m_eff=18.431 g  m_Pu=307.18 g (+2.39%)
+  stat errors (eff nu): {'M': 0.001793224336189142, 'alpha': 0.007458936033431232, 'm_eff': 0.12253354124172662, 'm_pu': 2.042225687362111}
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/03_shift_register_results.json

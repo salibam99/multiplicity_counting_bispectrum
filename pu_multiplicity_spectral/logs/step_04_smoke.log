@@ -1,0 +1,6 @@
+=== step_04_smoke  2026-10-19T22:56:55 ===
+toy truth: S=12700  D_inf=7800  T_inf=2700  tau=45 us
+PSD   : S=12669.7  D_inf=7745.0±29.4  tau=44.70
+cross : D_inf=7730.1±789.7  tau=44.69  offset=-1.10±4.25
+bispec: T_inf=2690.1±111.2  tau=44.51
+DFT deconv: r1=0.466894 vs f1-b1=0.466894;  r2=0.124917 vs T/S=0.124917

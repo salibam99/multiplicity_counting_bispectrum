@@ -1,0 +1,66 @@
+=== step_00  2026-10-19T22:44:02 ===
+python            : /home/michel/anaconda3/envs/openmc-env/bin/python
+openmc.__version__: 0.16.1.dev3+g9a62e431d.d20260913
+OPENMC_CROSS_SECTIONS: /home/michel/software/xs_data/endfb-viii.1-hdf5/cross_sections.xml  (exists=True)
+  library Pu239       : OK
+  library Pu240       : OK
+  library He3         : OK
+  library H1          : OK
+  library C12         : OK
+  library c_H_in_CH2  : OK
+Settings.collision_track accepted keys: ['cell_ids', 'reactions', 'universe_ids', 'material_ids', 'nuclides', 'deposited_E_threshold', 'max_collisions', 'max_collision_track_files', 'mcpl']
+read_collision_track_file: (filename)
+collision_track files: ['collision_track.h5']
+collision_track structured dtype:
+    r              [('x', '<f8'), ('y', '<f8'), ('z', '<f8')]
+    u              [('x', '<f8'), ('y', '<f8'), ('z', '<f8')]
+    E              float64
+    dE             float64
+    time           float64
+    wgt            float64
+    event_mt       int32
+    delayed_group  int32
+    cell_id        int32
+    nuclide_id     int32
+    material_id    int32
+    universe_id    int32
+    n_collision    int32
+    particle       int32
+    parent_id      int64
+    progeny_id     int64
+n records = 9184, distinct parent_id (histories) = 99
+event_mt census (cell, nuclide, MT): count
+    cell    1  Pu239    MT    2: 29
+    cell    1  Pu239    MT   18: 10
+    cell    1  Pu239    MT   51: 1
+    cell    1  Pu239    MT   52: 3
+    cell    1  Pu239    MT   54: 1
+    cell    1  Pu239    MT   79: 1
+    cell    1  Pu239    MT   91: 3
+    cell    1  Pu239    MT  101: 3
+    cell    1  Pu240    MT   51: 1
+    cell  101  H1       MT    2: 2328
+    cell  101  H1       MT  101: 9
+    cell  101  He3      MT  101: 26
+    cell  101  C12      MT    2: 167
+    cell  101  C12      MT   51: 1
+    cell  101  C13      MT    2: 3
+    cell  102  H1       MT    2: 2911
+    cell  102  H1       MT  101: 13
+    cell  102  He3      MT  101: 22
+    cell  102  C12      MT    2: 206
+    cell  102  C12      MT  101: 1
+    cell  102  C13      MT    2: 2
+    cell  103  H1       MT    2: 3143
+    cell  103  H1       MT  101: 11
+    cell  103  He3      MT  101: 34
+    cell  103  C12      MT    2: 250
+    cell  103  C13      MT    2: 5
+NOTE: analog absorption is recorded as MT=101 (N_DISAPPEAR); He3(n,p) detections => cell in banks, nuclide He3, MT 101.
+NOTE: fixed-source fission in OpenMC is implicit (fission sites at each fissionable collision); used as-is.
+=== step_00  2026-10-19T22:44:04 ===
+--- smoke_test_00 ---
+He3 captures: 82 from 67 histories; det/source = 0.820
+time range [0.494, 293.9] us
+sphere surface crossings out=128 in=2  ->  net leakage M = 1.260
+smoke_test_00 PASSED

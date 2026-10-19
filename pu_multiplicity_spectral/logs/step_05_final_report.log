@@ -1,0 +1,21 @@
+=== step_05_final_report  2026-10-19T23:03:53 ===
+# Final report — passive neutron multiplicity & spectral/bispectrum Pu assay
+
+Detector: eps = 0.6426, die-away tau = 52.69 us; effective induced-fission moments nu_i2 = 4.852, nu_i3 = 0.222 (OpenMC implicit fission)
+
+| Quantity | Ground truth | Point model (exact rates) | Shift register (P=3µs) | 2A DFT deconvolution | 2B PSD + bispectrum |
+|---|---|---|---|---|---|
+| Singles S (cps) | 22854 | 22854 (+0.0%) | 22822 ± 12 (-0.1%) | 22822 ± 12 (-0.1%) | 22822 ± 12 (-0.1%) |
+| Doubles D∞ (cps) | 17404 | 17404 (+0.0%) | 17341 ± 40 (-0.4%) | 17341 ± 40 (-0.4%) | 17352 ± 75 (-0.3%) |
+| Triples T∞ (cps) | 13835 | 13835 (+0.0%) | 13421 ± 78 (-3.0%) | 13421 ± 78 (-3.0%) | 14008 ± 5.3e+02 (+1.2%) |
+| Self-multiplication M | 1.292 | 1.292 (-0.0%) | 1.281 ± 0.0018 (-0.8%) | 1.281 ± 0.0018 (-0.8%) | 1.299 ± 0.014 (+0.5%) |
+| Impurity ratio α | 0.5 | 0.5 (-0.0%) | 0.4559 ± 0.0075 (-8.8%) | 0.4559 ± 0.0075 (-8.8%) | 0.5346 ± 0.076 (+6.9%) |
+| m_eff Pu-240 (g) | 18.00 | 18.00 (+0.0%) | 18.68 ± 0.12 (+3.8%) | 18.68 ± 0.12 (+3.8%) | 17.48 ± 0.84 (-2.9%) |
+| m_Pu (g) | 300.00 | 300.00 (+0.0%) | 311.26 ± 2 (+3.8%) | 311.26 ± 2 (+3.8%) | 291.35 ± 14 (-2.9%) |
+
+## Notes
+- PSD white floor S = 22824.8 ± 12.3 cps (expected 22854.0); cross-PSD floor offset = -7.5 ± 4.9 cps (vanishes).
+- Shift register with nominal Pu-239 moments (8.240, 17.321): m_Pu = 443.8 g (+47.9%), M = 1.140, alpha = 0.148 -> OpenMC implicit fission does not reproduce induced-fission multiplicity; effective moments required.
+- 2B with the single-exponential (spec) kernel: D_inf = 17116, T_inf = 13191 (biased low, chain timing not exponential); m_Pu = 306.1 g (partial cancellation). The free two-component kernel removes the bias.
+- Shift register / 2A T_inf use f_t from iid capture-time draws; correlated chain timing (thermal-return fission) makes this f_t ~3% too high -> T_inf ~3% low -> m_Pu ~+4%. The bispectrum needs no gate-fraction calibration.
+- 2A reproduces the shift-register moments exactly (r1 = f1-b1, r2 = (f2-b2)-b1(f1-b1)): the deconvolution removes the accidental cross-term automatically.

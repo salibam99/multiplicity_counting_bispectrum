@@ -1,0 +1,9 @@
+=== step_04b  2026-10-19T23:00:06 ===
+segments=18310 x 16.384 ms, dt=2.0 us, bank fractions=[0.3327 0.3342 0.3331]; bispectrum grid 163x326
+reference (exact library moments): S=22854.03 D_inf=17404.01 T_inf=13835.42
+PSD:   S_floor=22824.83±12.25 (counted 22822.00), D_inf=17336.72±73.59, tau_eff=53.62 us
+cross: D_inf=17352.24±74.59, kernel(w,t1,t2)=(np.float64(0.3314657559398097), np.float64(4.493235401368182e-05), np.float64(7.215400585446915e-05)), floor offset=-7.53±4.86 (expected 0)
+bispec: T_inf=14007.59±531.97, kernel(w,t1,t2)=(np.float64(0.37779897521938205), np.float64(4.2072678522254556e-05), np.float64(8.316705041268385e-05))
+single-exponential kernel (spec form) for comparison: D_inf=17115.88 (tau 52.44 us), T_inf=13190.73 (tau 53.25 us)
+inversion (S counted, D_inf cross-PSD, T_inf bispectrum, f_d=f_t=1): M=1.2986 alpha=0.5346 m_eff=17.481 g m_Pu=291.35±14.07 g (-2.88%)
+inversion with single-exponential kernel: M=1.2804 alpha=0.4813 m_Pu=306.12 g (+2.04%)

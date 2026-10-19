@@ -1,0 +1,52 @@
+{
+  "python": "/home/michel/anaconda3/envs/openmc-env/bin/python",
+  "pu_sphere": {
+    "mass_g": 300.0,
+    "density_g_cm3": 15.8,
+    "wt_frac_pu239": 0.94,
+    "wt_frac_pu240": 0.06,
+    "sf_rate_per_g240": 473.5
+  },
+  "alpha": 0.50,
+  "nu_sf_pu240": {
+    "P_nu": [0.066, 0.232, 0.329, 0.251, 0.102, 0.018, 0.002],
+    "nu_s1": 2.1540,
+    "nu_s2": 3.7889,
+    "nu_s3": 5.2108
+  },
+  "nu_if_pu239": {
+    "nu_i1": 3.163,
+    "nu_i2": 8.240,
+    "nu_i3": 17.321
+  },
+  "source_spectrum_watt_pu240_sf": {"a_MeV": 0.795148, "b_inv_MeV": 4.68927},
+  "detector": {
+    "cavity_radius_cm": 4.0,
+    "cavity_half_height_cm": 4.0,
+    "outer_radius_cm": 20.0,
+    "half_height_cm": 20.0,
+    "hdpe_density_g_cm3": 0.96,
+    "he3_atom_density_per_b_cm": 1.2e-5,
+    "n_banks": 3,
+    "bank_cell_ids": [101, 102, 103]
+  },
+  "transport": {
+    "n_hist_smoke": 10000,
+    "n_hist_full": 400000,
+    "n_batches": 1,
+    "seed": 12345
+  },
+  "pulse_train": {"T_meas_s": 300.0, "seed": 2026},
+  "shift_register": {
+    "predelays_us": [0.0, 3.0],
+    "gate_us": 64.0,
+    "long_delay_us": 2000.0,
+    "n_max": 25
+  },
+  "spectral": {
+    "dt_us": 2.0,
+    "T_seg_ms": 16.384,
+    "bispec_fmax_kHz": 10.0,
+    "n_fft_hist": 64
+  }
+}

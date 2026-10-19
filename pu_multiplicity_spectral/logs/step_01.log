@@ -1,0 +1,11 @@
+=== step_01  2026-10-19T22:46:09 ===
+--- run_openmc_transport: n_hist=400000, tag=step01_full ---
+N_hist = 400000,  He3 captures = 332120,  detections/source = 0.8303
+dropped 308 delayed-neutron captures (t > 10 ms), 0.0927% of all
+sphere crossings out=535093 in=18268  M_MC = 1.2921
+epsilon = 0.6426;  per bank = [0.2137 0.2148 0.2141]  (rel. dev from eps/3: [-0.0024  0.003  -0.0006])
+die-away tau = 52.69 +- 0.18 us  (R^2 = 0.99955)
+captures/history: mean 0.8303, var 0.5926, <n(n-1)>/2 = 0.2259
+P=0.0 us G=64 us: empirical f_d=0.6962 f_t=0.4882 | exponential f_d=0.7032 f_t=0.4945
+P=3.0 us G=64 us: empirical f_d=0.6566 f_t=0.4341 | exponential f_d=0.6643 f_t=0.4412
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/01_openmc_event_library.npz
