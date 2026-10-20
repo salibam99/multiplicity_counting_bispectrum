@@ -47,8 +47,8 @@ def nu_moments(cfg):
     )
 
 
-def load_library():
-    return dict(np.load(DATA / "01_openmc_event_library.npz"))
+def load_library(path=None):
+    return dict(np.load(path or DATA / "01_openmc_event_library.npz"))
 
 
 def effective_nu(cfg, lib):
@@ -136,7 +136,10 @@ def invert_point_model(S, D, T, eps, fd, ft, nu, f240=None, sf_per_g=473.5):
 # --------------------------------------------------------------------------
 # OpenMC model
 # --------------------------------------------------------------------------
-def build_model(cfg, n_hist, batches=None, seed=None):
+def build_model(cfg, n_hist, batches=None, seed=None, variant="pu", shell_cm=1.5):
+    """variant: "pu" (baseline), "cf_cal" (Cf-252 point-like source, empty cavity,
+    for gate-fraction calibration), "pu_poly" (Pu sphere inside an HDPE shell of
+    thickness shell_cm: a moderating item that changes the chain timing)."""
     import openmc
     pu, det = cfg["pu_sphere"], cfg["detector"]
     batches = batches or cfg["transport"]["n_batches"]
@@ -155,6 +158,12 @@ def build_model(cfg, n_hist, batches=None, seed=None):
     m_det.set_density("sum")
     m_det.add_s_alpha_beta("c_H_in_CH2")
 
+    m_poly = openmc.Material(material_id=3, name="HDPE item shell")
+    m_poly.add_nuclide("H1", 2 * n_ch2)
+    m_poly.add_element("C", n_ch2)
+    m_poly.set_density("sum")
+    m_poly.add_s_alpha_beta("c_H_in_CH2")
+
     s_sph = openmc.Sphere(surface_id=1, r=pu["radius_cm"])
     s_cav = openmc.ZCylinder(surface_id=2, r=det["cavity_radius_cm"])
     s_cz0 = openmc.ZPlane(surface_id=3, z0=-det["cavity_half_height_cm"])
@@ -169,16 +178,26 @@ def build_model(cfg, n_hist, batches=None, seed=None):
 
     cavity = -s_cav & +s_cz0 & -s_cz1
     body = -s_out & +s_z0 & -s_z1 & ~cavity
-    cells = [openmc.Cell(cell_id=1, name="Pu sphere", fill=m_pu, region=-s_sph),
-             openmc.Cell(cell_id=2, name="cavity", region=cavity & +s_sph)]
+    if variant == "pu_poly":
+        s_sh = openmc.Sphere(surface_id=8, r=pu["radius_cm"] + shell_cm)
+        cells = [openmc.Cell(cell_id=1, name="Pu sphere", fill=m_pu, region=-s_sph),
+                 openmc.Cell(cell_id=3, name="HDPE shell", fill=m_poly, region=+s_sph & -s_sh),
+                 openmc.Cell(cell_id=2, name="cavity", region=cavity & +s_sh)]
+    else:
+        fill = None if variant == "cf_cal" else m_pu
+        cells = [openmc.Cell(cell_id=1, name="Pu sphere", fill=fill, region=-s_sph),
+                 openmc.Cell(cell_id=2, name="cavity", region=cavity & +s_sph)]
     for i in range(nb):
         cells.append(openmc.Cell(cell_id=det["bank_cell_ids"][i], name=f"bank {i}", fill=m_det,
                                  region=body & +planes[i] & -planes[(i + 1) % nb]))
     geom = openmc.Geometry(openmc.Universe(cells=cells))
 
     w = cfg["source_spectrum_watt_pu240_sf"]
+    r_src = pu["radius_cm"]
+    if variant == "cf_cal":
+        w, r_src = {"a_MeV": 1.025, "b_inv_MeV": 2.926}, 0.2     # Cf-252 SF Watt
     src = openmc.IndependentSource(
-        space=openmc.stats.spherical_uniform(r_outer=pu["radius_cm"]),
+        space=openmc.stats.spherical_uniform(r_outer=r_src),
         angle=openmc.stats.Isotropic(),
         energy=openmc.stats.Watt(a=w["a_MeV"] * 1e6, b=w["b_inv_MeV"] * 1e-6))
 
@@ -194,7 +213,7 @@ def build_model(cfg, n_hist, batches=None, seed=None):
                           "reactions": [101], "max_collisions": 2_000_000,
                           "max_collision_track_files": 10_000}
     st.surf_source_write = {"surface_ids": [1], "max_particles": 50_000_000}
-    return openmc.Model(geometry=geom, materials=openmc.Materials([m_pu, m_det]),
+    return openmc.Model(geometry=geom, materials=openmc.Materials([m_pu, m_det, m_poly]),
                         settings=st)
 
 

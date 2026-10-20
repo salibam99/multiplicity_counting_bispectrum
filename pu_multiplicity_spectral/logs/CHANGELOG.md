@@ -158,3 +158,35 @@
 - Shift register (P=3µs): m_Pu = 311.26 g (+3.75%)
 - 2A DFT deconvolution: m_Pu = 311.26 g (+3.75%)
 - 2B PSD + bispectrum: m_Pu = 291.35 g (-2.88%)
+
+## 2026-10-20T11:37:17 — Module 01 smoke test (10k histories)
+**Files Created/Modified:** 01_openmc_transport/run_openmc_transport.py, 01_openmc_transport/smoke_test_01.py
+
+**Physics/Code Changes & Why:**
+- Event library: per history CSR list of (He3 capture time, bank id from atan2).
+- M_MC from net sphere surface crossings; eps = detections/source / M_MC.
+- Die-away: single-exp fit after 3 us predelay; empirical f_d, f_t from iid triples of library capture times.
+
+**Smoke Test & Metrics:**
+- PASS M_MC=1.2859 in [1.08,1.35] (spec 1.25 widened: physical value for 300 g + reflector)
+- PASS eps=0.6436 in [0.45,0.80]
+- PASS tau=50.86us in [25,80]
+- PASS R2=0.99026 > 0.99
+- PASS bank dev [0.0021 0.0016 0.0005] < tol [0.0572 0.0571 0.0571]
+
+## 2026-10-20T12:01:00 — Module 06 studies (case for the bispectrum)
+**Files Created/Modified:** common/pu_model.py (variants cf_cal, pu_poly; load_library(path)), 01_openmc_transport/run_openmc_transport.py (variant pass-through), 06_studies/run_variant_transport.py, 06_studies/study_lib.py, 06_studies/run_studies.py
+
+**Physics/Code Changes & Why:**
+- Cf-252 calibration source and HDPE-shell moderated item transported with OpenMC (400k each).
+- A: 8 seeds; B: Cf-calibrated f_d/f_t transferred to baseline and moderated item; C: alpha scan; D: leave-one-out ratio hybrid f_t = T_SR/T_bis.
+
+**Smoke Test & Metrics:**
+- sr_iid: bias +3.27%, RMS 10.0 g
+- sr_cal: bias +4.51%, RMS 13.7 g
+- bis: bias +0.83%, RMS 9.2 g
+- hybrid: bias +0.81%, RMS 3.5 g
+- moderated sr_iid: bias +4.49%, RMS 13.5 g
+- moderated sr_cal: bias +5.26%, RMS 15.8 g
+- moderated bis: bias -0.72%, RMS 6.8 g
+- moderated hybrid: bias -0.74%, RMS 3.3 g

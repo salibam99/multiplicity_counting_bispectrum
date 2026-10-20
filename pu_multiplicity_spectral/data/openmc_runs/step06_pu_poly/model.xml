@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<model>
+  <materials>
+    <material id="1" name="Pu metal" depletable="true">
+      <density value="15.8" units="g/cm3"/>
+      <nuclide name="Pu239" wo="0.94"/>
+      <nuclide name="Pu240" wo="0.06"/>
+    </material>
+    <material id="2" name="HDPE + He3">
+      <density units="sum"/>
+      <nuclide name="H1" ao="0.0824327367943764"/>
+      <nuclide name="C12" ao="0.04075977346808415"/>
+      <nuclide name="C13" ao="0.00045659492910405086"/>
+      <nuclide name="He3" ao="1.2e-05"/>
+      <sab name="c_H_in_CH2"/>
+    </material>
+    <material id="3" name="HDPE item shell">
+      <density units="sum"/>
+      <nuclide name="H1" ao="0.0824327367943764"/>
+      <nuclide name="C12" ao="0.04075977346808415"/>
+      <nuclide name="C13" ao="0.00045659492910405086"/>
+      <sab name="c_H_in_CH2"/>
+    </material>
+  </materials>
+  <geometry>
+    <cell id="1" name="Pu sphere" material="1" region="-1" universe="2"/>
+    <cell id="2" name="cavity" material="void" region="-2 3 -4 8" universe="2"/>
+    <cell id="3" name="HDPE shell" material="3" region="1 -8" universe="2"/>
+    <cell id="101" name="bank 0" material="2" region="-5 6 -7 (2 | -3 | 4) 10 -11" universe="2"/>
+    <cell id="102" name="bank 1" material="2" region="-5 6 -7 (2 | -3 | 4) 11 -12" universe="2"/>
+    <cell id="103" name="bank 2" material="2" region="-5 6 -7 (2 | -3 | 4) 12 -10" universe="2"/>
+    <surface id="1" type="sphere" coeffs="0.0 0.0 0.0 1.6549765818246707"/>
+    <surface id="2" type="z-cylinder" coeffs="0.0 0.0 4.0"/>
+    <surface id="3" type="z-plane" coeffs="-4.0"/>
+    <surface id="4" type="z-plane" coeffs="4.0"/>
+    <surface id="5" type="z-cylinder" boundary="vacuum" coeffs="0.0 0.0 20.0"/>
+    <surface id="6" type="z-plane" boundary="vacuum" coeffs="-20.0"/>
+    <surface id="7" type="z-plane" boundary="vacuum" coeffs="20.0"/>
+    <surface id="8" type="sphere" coeffs="0.0 0.0 0.0 3.1549765818246707"/>
+    <surface id="10" type="plane" coeffs="-0.0 1.0 0.0 0.0"/>
+    <surface id="11" type="plane" coeffs="-0.8660254037844387 -0.4999999999999998 0.0 0.0"/>
+    <surface id="12" type="plane" coeffs="0.8660254037844384 -0.5000000000000004 0.0 0.0"/>
+  </geometry>
+  <settings>
+    <run_mode>fixed source</run_mode>
+    <particles>400000</particles>
+    <batches>1</batches>
+    <source type="independent" strength="1.0" particle="neutron">
+      <space type="spherical" origin="0.0 0.0 0.0">
+        <r type="powerlaw" parameters="0.0 1.6549765818246707 2"/>
+        <cos_theta type="uniform" parameters="-1.0 1.0"/>
+        <phi type="uniform" parameters="0.0 6.283185307179586"/>
+      </space>
+      <angle type="isotropic"/>
+      <energy type="watt" parameters="795148.0 4.68927e-06"/>
+    </source>
+    <output>
+      <tallies>false</tallies>
+    </output>
+    <surf_source_write>
+      <surface_ids>1</surface_ids>
+      <max_particles>50000000</max_particles>
+    </surf_source_write>
+    <collision_track>
+      <cell_ids>101 102 103</cell_ids>
+      <reactions>101</reactions>
+      <nuclides>He3</nuclides>
+      <max_collisions>2000000</max_collisions>
+      <max_collision_track_files>10000</max_collision_track_files>
+    </collision_track>
+    <seed>12345</seed>
+    <survival_biasing>false</survival_biasing>
+  </settings>
+  </model>

@@ -1,0 +1,11 @@
+=== step_06_transport_cf_cal  2026-10-20T11:37:18 ===
+--- run_openmc_transport: n_hist=400000, tag=step06_cf_cal ---
+N_hist = 400000,  He3 captures = 252241,  detections/source = 0.6306
+dropped 0 delayed-neutron captures (t > 10 ms), 0.0000% of all
+sphere crossings out=414156 in=14156  M_MC = 1.0000
+epsilon = 0.6306;  per bank = [0.209  0.2109 0.2107]  (rel. dev from eps/3: [-0.0058  0.0033  0.0025])
+die-away tau = 51.46 +- 0.23 us  (R^2 = 0.99929)
+captures/history: mean 0.6306, var 0.2329, <n(n-1)>/2 = 0.0000
+P=0.0 us G=64 us: empirical f_d=0.7031 f_t=0.4988 | exponential f_d=0.7117 f_t=0.5065
+P=3.0 us G=64 us: empirical f_d=0.6621 f_t=0.4420 | exponential f_d=0.6714 f_t=0.4508
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/06_lib_cf_cal.npz

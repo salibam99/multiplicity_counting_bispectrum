@@ -1,0 +1,11 @@
+=== step_06_transport_pu_poly  2026-10-20T11:37:23 ===
+--- run_openmc_transport: n_hist=400000, tag=step06_pu_poly ---
+N_hist = 400000,  He3 captures = 344720,  detections/source = 0.8618
+dropped 384 delayed-neutron captures (t > 10 ms), 0.1113% of all
+sphere crossings out=579257 in=48794  M_MC = 1.3262
+epsilon = 0.6498;  per bank = [0.2162 0.2171 0.2165]  (rel. dev from eps/3: [-0.0019  0.0025 -0.0006])
+die-away tau = 54.36 +- 0.20 us  (R^2 = 0.99954)
+captures/history: mean 0.8618, var 0.6727, <n(n-1)>/2 = 0.2768
+P=0.0 us G=64 us: empirical f_d=0.6857 f_t=0.4739 | exponential f_d=0.6919 f_t=0.4787
+P=3.0 us G=64 us: empirical f_d=0.6478 f_t=0.4231 | exponential f_d=0.6547 f_t=0.4287
+saved /home/michel/software/multiplicity_couting_bispectrum/pu_multiplicity_spectral/data/06_lib_pu_poly.npz

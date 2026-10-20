@@ -1,0 +1,19 @@
+=== step_06_studies_full  2026-10-20T11:41:09 ===
+16 synthetic measurements, 8 processes
+[B] Cf-252 calibration: f_d = 0.6616 ± 0.0010, f_t = 0.4447 ± 0.0025
+[B] pu      : true f_d=0.6577 f_t=0.4269 | iid f_d=0.6566 f_t=0.4341 | Cf-cal f_t error +4.16%, iid f_t error +1.69%
+[B] pu_poly : true f_d=0.6484 f_t=0.4126 | iid f_d=0.6478 f_t=0.4231 | Cf-cal f_t error +7.76%, iid f_t error +2.53%
+[A baseline] sr_iid : mean m_Pu =  309.80 g  bias +3.27% ± 0.24%   spread (1 run)  2.05 g   RMS error  9.99 g
+[A baseline] sr_cal : mean m_Pu =  313.53 g  bias +4.51% ± 0.24%   spread (1 run)  2.05 g   RMS error 13.67 g
+[A baseline] bis    : mean m_Pu =  302.50 g  bias +0.83% ± 1.11%   spread (1 run)  9.45 g   RMS error  9.18 g
+[A baseline] hybrid : mean m_Pu =  302.43 g  bias +0.81% ± 0.32%   spread (1 run)  2.75 g   RMS error  3.54 g
+[A baseline] mean in-run stat error: SR 5.00 g, bispectrum 26.33 g
+[B moderated] sr_iid : mean m_Pu =  313.47 g  bias +4.49% ± 0.24%   spread (1 run)  1.42 g   RMS error 13.53 g
+[B moderated] sr_cal : mean m_Pu =  315.79 g  bias +5.26% ± 0.23%   spread (1 run)  1.41 g   RMS error 15.83 g
+[B moderated] bis    : mean m_Pu =  297.84 g  bias -0.72% ± 1.25%   spread (1 run)  7.49 g   RMS error  6.84 g
+[B moderated] hybrid : mean m_Pu =  297.78 g  bias -0.74% ± 0.47%   spread (1 run)  2.84 g   RMS error  3.31 g
+[B moderated] mean in-run stat error: SR 4.92 g, bispectrum 19.58 g
+[C] alpha=0.0 S=   15254: sigma_T/T  SR  0.55%  bispectrum   2.04%  (ratio 3.7); sigma_D/D SR 0.16% cross-PSD 0.74%
+[C] alpha=0.5 S=   22881: sigma_T/T  SR  0.82%  bispectrum   1.60%  (ratio 2.0); sigma_D/D SR 0.25% cross-PSD 0.39%
+[C] alpha=2.0 S=   45703: sigma_T/T  SR  1.07%  bispectrum   2.02%  (ratio 1.9); sigma_D/D SR 0.27% cross-PSD 0.67%
+[C] alpha=5.0 S=   91425: sigma_T/T  SR  1.86%  bispectrum   4.44%  (ratio 2.4); sigma_D/D SR 0.25% cross-PSD 0.80%

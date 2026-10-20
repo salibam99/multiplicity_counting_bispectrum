@@ -18,12 +18,12 @@ PREDELAY_US = 3.0
 PROMPT_CUT_S = 10e-3   # captures later than this come from OpenMC delayed neutrons
 
 
-def run_transport(cfg, n_hist, tag, threads=None):
+def run_transport(cfg, n_hist, tag, threads=None, variant="pu"):
     run = DATA / "openmc_runs" / tag
     run.mkdir(parents=True, exist_ok=True)
     for f in run.glob("*.h5"):
         f.unlink()
-    model = build_model(cfg, n_hist)
+    model = build_model(cfg, n_hist, variant=variant)
     model.run(cwd=run, output=False, threads=threads)
     n_hist = model.settings.particles * model.settings.batches
     return run, n_hist
@@ -124,12 +124,13 @@ def plot(lib, res, path):
     plt.close(fig)
 
 
-def main(n_hist=None, tag="step01_full", out=None, log_name="step_01", log_mode="w"):
+def main(n_hist=None, tag="step01_full", out=None, log_name="step_01", log_mode="w",
+         variant="pu", plot_path=None):
     cfg = load_config()
     n_hist = n_hist or cfg["transport"]["n_hist_full"]
     log = StepLog(log_name, mode=log_mode)
     log.write(f"--- run_openmc_transport: n_hist={n_hist}, tag={tag} ---")
-    run, n_hist = run_transport(cfg, n_hist, tag)
+    run, n_hist = run_transport(cfg, n_hist, tag, variant=variant)
     lib = build_library(run, n_hist)
     res = analyse(lib, log)
     G = cfg["shift_register"]["gate_us"]
@@ -149,7 +150,7 @@ def main(n_hist=None, tag="step01_full", out=None, log_name="step_01", log_mode=
         gate_P_us=np.array(list(gate.keys())), gate_fd=np.array([g[0] for g in gate.values()]),
         gate_ft=np.array([g[1] for g in gate.values()]))
     log.write(f"saved {out}")
-    plot(lib, res, PLOTS / "step_01_geometry_and_die_away.png")
+    plot(lib, res, plot_path or PLOTS / "step_01_geometry_and_die_away.png")
     log.close()
     return lib, res
 

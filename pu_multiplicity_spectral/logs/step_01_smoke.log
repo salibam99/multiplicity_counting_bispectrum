@@ -1,4 +1,4 @@
-=== step_01_smoke  2026-10-19T22:46:02 ===
+=== step_01_smoke  2026-10-20T11:37:14 ===
 --- run_openmc_transport: n_hist=10000, tag=step01_smoke ---
 N_hist = 10000,  He3 captures = 8276,  detections/source = 0.8276
 dropped 11 delayed-neutron captures (t > 10 ms), 0.1327% of all
